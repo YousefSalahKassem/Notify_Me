@@ -25,6 +25,7 @@ class BoardingScreen extends StatelessWidget {
         },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: Colors.white,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -21,7 +21,7 @@ class TasksScreen extends StatelessWidget {
     return BlocConsumer<TaskBloc,TaskStates>(builder: (context,state){
       BlocProvider.of<TaskBloc>(context).category=category!;
       return Scaffold(
-        backgroundColor: ColorsApp.white.withOpacity(.90),
+        backgroundColor: ColorsApp.white,
         appBar: AppBar(
           backgroundColor: ColorsApp.primary,
           centerTitle: true,
@@ -42,7 +42,14 @@ class TasksScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: const[
+                              BoxShadow(
+                                color: Colors.black45,
+                                offset: Offset(0, 7),
+                                blurRadius: 7,
+                              )
+                            ],
                           ),
                           child: ListTile(
                             leading: CircleAvatar(
@@ -60,6 +67,7 @@ class TasksScreen extends StatelessWidget {
                               BlocProvider.of<TaskBloc>(context).description.text=BlocProvider.of<TaskBloc>(context).tasks[index]['description'];
                               showModalBottomSheet(
                                   context: context,
+                                  isScrollControlled: true,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
@@ -128,6 +136,7 @@ class TasksScreen extends StatelessWidget {
             ],
           ),
         ),
+        resizeToAvoidBottomInset: true,
         floatingActionButton: FloatingActionButton(onPressed: (){
           showModalBottomSheet(
               isScrollControlled:true,

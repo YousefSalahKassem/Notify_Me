@@ -22,7 +22,7 @@ class LandingScreen extends StatelessWidget {
       }
     }, builder: (context, state) {
       return Scaffold(
-          backgroundColor: ColorsApp.white.withOpacity(.90),
+          backgroundColor: ColorsApp.white,
           appBar: AppBar(
             backgroundColor: ColorsApp.primary,
             centerTitle: true,
@@ -94,9 +94,11 @@ class LandingScreen extends StatelessWidget {
                   }),
             ),
           ),
+          resizeToAvoidBottomInset: true,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               showModalBottomSheet(
+                  isScrollControlled: true,
                   context: context,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
