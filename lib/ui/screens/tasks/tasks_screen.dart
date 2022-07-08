@@ -1,13 +1,10 @@
 import 'package:bloctest/blocs/tasks/task_cubit.dart';
 import 'package:bloctest/blocs/tasks/task_state.dart';
 import 'package:bloctest/helper/routes.dart';
-import 'package:emojis/emoji.dart';
-import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../components/button_app.dart';
 import '../../../components/text_field.dart';
 import '../../../constants/colors.dart';
@@ -37,7 +34,7 @@ class TasksScreen extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: BlocProvider.of<TaskBloc>(context).tasks.length,
                     itemBuilder: (context,index){
-                      return Container(
+                      return BlocProvider.of<TaskBloc>(context).tasks[index]['category']==category?Container(
                           margin: const EdgeInsets.all(10),
                           padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
@@ -130,7 +127,7 @@ class TasksScreen extends StatelessWidget {
                                     );
                                   });                        },
                           )
-                      );
+                      ):Container();
                     }),
               ),
             ],
@@ -238,7 +235,6 @@ class TasksScreen extends StatelessWidget {
                 );
               });
         },backgroundColor: ColorsApp.secondary,child: const Icon(Icons.add),),
-
       );
     }, listener: (context,state){
       if (state is TaskInitialState) {

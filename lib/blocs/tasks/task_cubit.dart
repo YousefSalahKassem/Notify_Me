@@ -39,7 +39,7 @@ class TaskBloc extends Cubit<TaskStates> {
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
-          'CREATE TABLE $category( id INTEGER PRIMARY KEY, name TEXT, description TEXT, checked TEXT, logo TEXT, dueDate TEXT)',
+          'CREATE TABLE $category( id INTEGER PRIMARY KEY, name TEXT, description TEXT, checked TEXT, logo TEXT, dueDate TEXT, category TEXT)',
         );
         debugPrint('Table Created');
       },
@@ -55,7 +55,7 @@ class TaskBloc extends Cubit<TaskStates> {
   void insertUserData() {
     database.transaction((txn) async {
       txn.rawInsert(
-          'INSERT INTO $category(name, description, checked, logo, dueDate) VALUES("${taskName.text}", "${description.text}", "$checked", "${emList[emojiIndex]}", "${selectedTime.hour}:${selectedTime.minute}")');
+          'INSERT INTO $category(name, description, checked, logo, dueDate, category) VALUES("${taskName.text}", "${description.text}", "$checked", "${emList[emojiIndex]}", "${selectedTime.hour}:${selectedTime.minute}","$category")');
     }).then((value) {
       debugPrint('User Data Inserted');
 
